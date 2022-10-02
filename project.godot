@@ -1,0 +1,119 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Aiming",
+"language": "GDScript",
+"path": "res://src/util/AI/aiming.gd"
+}, {
+"base": "Node",
+"class": "AudioCrossfadePlayer",
+"language": "GDScript",
+"path": "res://src/util/audio/music_player.gd"
+}, {
+"base": "Reference",
+"class": "Bool",
+"language": "GDScript",
+"path": "res://src/global/bool.gd"
+}, {
+"base": "Reference",
+"class": "ButtonState",
+"language": "GDScript",
+"path": "res://src/util/controller/button_state.gd"
+}, {
+"base": "Node",
+"class": "GeometryUtils",
+"language": "GDScript",
+"path": "res://src/util/geometry/geometry_utils.gd"
+}, {
+"base": "Reference",
+"class": "InputUtils",
+"language": "GDScript",
+"path": "res://src/global/input_utils.gd"
+}, {
+"base": "Reference",
+"class": "Math",
+"language": "GDScript",
+"path": "res://src/global/math.gd"
+}, {
+"base": "Reference",
+"class": "NodeUtils",
+"language": "GDScript",
+"path": "res://src/global/node_utils.gd"
+}, {
+"base": "Node",
+"class": "PoolArray",
+"language": "GDScript",
+"path": "res://src/global/pool_array.gd"
+}, {
+"base": "Reference",
+"class": "RenderUtils",
+"language": "GDScript",
+"path": "res://src/global/render_utils.gd"
+}, {
+"base": "Node",
+"class": "StackFiniteStateMachine",
+"language": "GDScript",
+"path": "res://src/util/state_machine/stack_finite_state_machine.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/util/state_machine/state.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://src/util/state_machine/state_machine.gd"
+}, {
+"base": "Reference",
+"class": "TilemapUtils",
+"language": "GDScript",
+"path": "res://src/util/tilemap/tilemap_utils.gd"
+} ]
+_global_script_class_icons={
+"Aiming": "",
+"AudioCrossfadePlayer": "",
+"Bool": "",
+"ButtonState": "",
+"GeometryUtils": "",
+"InputUtils": "",
+"Math": "",
+"NodeUtils": "",
+"PoolArray": "",
+"RenderUtils": "",
+"StackFiniteStateMachine": "",
+"State": "",
+"StateMachine": "",
+"TilemapUtils": ""
+}
+
+[application]
+
+config/name="skel"
+config/icon="res://assets/texture/icon.png"
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"
