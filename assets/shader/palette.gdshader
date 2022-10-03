@@ -14,7 +14,7 @@ void fragment(){
 	float h_pixel_size = 1.0/float(palette_size);
 	vec2 palette_pixel = vec2(palette_index*(h_pixel_size), 0.0);
 	
-	COLOR.rgb = texture(palette, palette_pixel).rgb;
-	COLOR.a = tex.a;
+	COLOR.rgba = texture(palette, palette_pixel);
+	COLOR.a *= tex.a;
 	
 }
