@@ -103,14 +103,15 @@ config/icon="res://assets/texture/icon.png"
 
 [autoload]
 
+Global="*res://src/global/Global.tscn"
 GlobalPalette="*res://src/global/GlobalPalette.tscn"
 
 [display]
 
 window/size/width=256
 window/size/height=144
-window/size/test_width=1024
-window/size/test_height=576
+window/size/test_width=1536
+window/size/test_height=864
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -118,6 +119,29 @@ window/stretch/aspect="keep"
 
 texture={
 "flags/filter": false
+}
+
+[input]
+
+exit={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+A={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+restart={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
 }
 
 [physics]
