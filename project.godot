@@ -109,7 +109,7 @@ GlobalPalette="*res://src/global/GlobalPalette.tscn"
 [display]
 
 window/size/width=320
-window/size/height=176
+window/size/height=288
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/texture/bife.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5, 5 )
+extents = Vector2( 5, 5.5 )
 
 [sub_resource type="Image" id=7]
 data = {
@@ -68,6 +68,7 @@ script = ExtResource( 1 )
 walk_speed = 120.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 0, 0.5 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="player"]
