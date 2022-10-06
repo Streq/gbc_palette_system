@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/texture/pokemon/wooden_floor_and_walls.png" type="Texture" id=6]
 [ext_resource path="res://assets/texture/pokemon/boundaries.png" type="Texture" id=7]
 
-[sub_resource type="Image" id=21]
+[sub_resource type="Image" id=13]
 data = {
 "data": PoolByteArray( 255, 255, 255, 0, 255, 156, 82, 255, 255, 57, 8, 255, 0, 0, 0, 255 ),
 "format": "RGBA8",
@@ -17,33 +17,10 @@ data = {
 "width": 4
 }
 
-[sub_resource type="ImageTexture" id=14]
+[sub_resource type="ImageTexture" id=2]
 flags = 0
 flags = 0
-image = SubResource( 21 )
-size = Vector2( 4, 1 )
-
-[sub_resource type="ShaderMaterial" id=9]
-resource_local_to_scene = true
-shader = ExtResource( 3 )
-shader_param/palette_size = 4
-shader_param/offset = 0
-shader_param/blue_index_offset = 0.0
-shader_param/palette = SubResource( 14 )
-
-[sub_resource type="Image" id=22]
-data = {
-"data": PoolByteArray( 214, 198, 140, 255, 173, 140, 57, 255, 132, 107, 24, 255, 57, 57, 57, 255 ),
-"format": "RGBA8",
-"height": 1,
-"mipmaps": false,
-"width": 4
-}
-
-[sub_resource type="ImageTexture" id=16]
-flags = 0
-flags = 0
-image = SubResource( 22 )
+image = SubResource( 13 )
 size = Vector2( 4, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -52,21 +29,21 @@ shader = ExtResource( 3 )
 shader_param/palette_size = 4
 shader_param/offset = 0
 shader_param/blue_index_offset = 0.0
-shader_param/palette = SubResource( 16 )
+shader_param/palette = SubResource( 2 )
 
-[sub_resource type="Image" id=23]
+[sub_resource type="Image" id=14]
 data = {
-"data": PoolByteArray( 246, 231, 213, 255, 156, 156, 156, 255, 107, 107, 107, 255, 57, 57, 57, 255 ),
+"data": PoolByteArray( 214, 198, 140, 255, 173, 140, 57, 255, 132, 107, 24, 255, 57, 57, 57, 255 ),
 "format": "RGBA8",
 "height": 1,
 "mipmaps": false,
 "width": 4
 }
 
-[sub_resource type="ImageTexture" id=18]
+[sub_resource type="ImageTexture" id=5]
 flags = 0
 flags = 0
-image = SubResource( 23 )
+image = SubResource( 14 )
 size = Vector2( 4, 1 )
 
 [sub_resource type="ShaderMaterial" id=6]
@@ -75,9 +52,32 @@ shader = ExtResource( 3 )
 shader_param/palette_size = 4
 shader_param/offset = 0
 shader_param/blue_index_offset = 0.0
-shader_param/palette = SubResource( 18 )
+shader_param/palette = SubResource( 5 )
 
-[sub_resource type="Image" id=24]
+[sub_resource type="Image" id=15]
+data = {
+"data": PoolByteArray( 246, 231, 213, 255, 156, 156, 156, 255, 107, 107, 107, 255, 57, 57, 57, 255 ),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 4
+}
+
+[sub_resource type="ImageTexture" id=8]
+flags = 0
+flags = 0
+image = SubResource( 15 )
+size = Vector2( 4, 1 )
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/palette_size = 4
+shader_param/offset = 0
+shader_param/blue_index_offset = 0.0
+shader_param/palette = SubResource( 8 )
+
+[sub_resource type="Image" id=16]
 data = {
 "data": PoolByteArray( 246, 231, 213, 255, 122, 132, 255, 255, 78, 74, 255, 255, 57, 57, 57, 255 ),
 "format": "RGBA8",
@@ -86,10 +86,10 @@ data = {
 "width": 4
 }
 
-[sub_resource type="ImageTexture" id=20]
+[sub_resource type="ImageTexture" id=11]
 flags = 0
 flags = 0
-image = SubResource( 24 )
+image = SubResource( 16 )
 size = Vector2( 4, 1 )
 
 [sub_resource type="ShaderMaterial" id=12]
@@ -98,12 +98,12 @@ shader = ExtResource( 3 )
 shader_param/palette_size = 4
 shader_param/offset = 0
 shader_param/blue_index_offset = 0.0
-shader_param/palette = SubResource( 20 )
+shader_param/palette = SubResource( 11 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="red" type="Sprite" parent="."]
-material = SubResource( 9 )
+material = SubResource( 3 )
 texture = ExtResource( 2 )
 centered = false
 
@@ -111,7 +111,7 @@ centered = false
 type = 1
 
 [node name="wooden" type="Sprite" parent="."]
-material = SubResource( 3 )
+material = SubResource( 6 )
 texture = ExtResource( 6 )
 centered = false
 
@@ -119,14 +119,14 @@ centered = false
 index = 5
 
 [node name="grey" type="Sprite" parent="."]
-material = SubResource( 6 )
+material = SubResource( 9 )
 texture = ExtResource( 5 )
 centered = false
 
 [node name="palette_client" parent="grey" instance=ExtResource( 1 )]
 
 [node name="outside" type="Sprite" parent="."]
-material = SubResource( 6 )
+material = SubResource( 9 )
 texture = ExtResource( 7 )
 centered = false
 

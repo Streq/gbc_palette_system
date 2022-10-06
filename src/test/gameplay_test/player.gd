@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var velocity := Vector2()
 
-export var walk_speed := 75.0
+export var walk_speed := 144.0
 export var gravity := 150.0
 export var jump_speed := 125.0
 

@@ -16,3 +16,6 @@ func change_fullscreen():
 	for i in 3:
 		yield(get_tree(),"idle_frame")
 		OS.current_screen = current_screen
+
+func _ready() -> void:
+	OS.min_window_size=Vector2(256,144)
