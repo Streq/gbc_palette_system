@@ -14,3 +14,5 @@ func is_just_released():
 	return !pressed and just_updated
 func is_pressed():
 	return pressed
+func stale():
+	just_updated = false

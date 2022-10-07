@@ -18,4 +18,7 @@ func change_fullscreen():
 		OS.current_screen = current_screen
 
 func _ready() -> void:
-	OS.min_window_size=Vector2(256,144)
+	OS.min_window_size=Vector2(
+		ProjectSettings.get("display/window/size/width"),
+		ProjectSettings.get("display/window/size/height")
+	)

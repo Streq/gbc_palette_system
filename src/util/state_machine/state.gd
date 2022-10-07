@@ -63,6 +63,9 @@ func _physics_update(delta: float):
 func _handle_input(event: InputEvent):
 	return
 
+
+#UTILS
+
 func goto(state: String):
 	emit_signal("finish", state, null)
 
