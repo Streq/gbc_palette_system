@@ -7,6 +7,7 @@ signal pop()
 signal clear(next_state, params)
 signal switch(next_state, params)
 
+signal enter(params)
 signal entered
 signal exited
 signal suspended
@@ -14,8 +15,11 @@ signal awakened
 signal updated(delta)
 signal physics_updated(delta)
 
+var root
+
 func enter(params):
 	_enter(params)
+	emit_signal("enter",params)
 	emit_signal("entered")
 func suspend():
 	_suspend()

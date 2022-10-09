@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/util/controller/button_state.gd"
 }, {
+"base": "State",
+"class": "FighterState",
+"language": "GDScript",
+"path": "res://src/fighter/fighter_state.gd"
+}, {
 "base": "Node",
 "class": "GeometryUtils",
 "language": "GDScript",
@@ -84,6 +89,7 @@ _global_script_class_icons={
 "AudioCrossfadePlayer": "",
 "Bool": "",
 "ButtonState": "",
+"FighterState": "",
 "GeometryUtils": "",
 "InputUtils": "",
 "Math": "",
@@ -98,7 +104,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="skel"
+config/name="gbc_beat_em_up"
 config/icon="res://assets/texture/icon.png"
 
 [autoload]
@@ -145,6 +151,17 @@ restart={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+B={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="being"
+2d_physics/layer_2="terrain"
+2d_physics/layer_3="hurtbox"
 
 [physics]
 

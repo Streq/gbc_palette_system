@@ -6,12 +6,13 @@ export (String) var start_state
 
 var current: State = null
 var states:= {}
-
+onready var root = owner
 
 func initialize():
 	for state in get_children():
 		states[state.name] = state
 		state.connect("finish", self, "_change_state")
+		state.root = root
 	current = states[start_state]
 	current.enter(null)
 

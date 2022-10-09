@@ -9,6 +9,10 @@ enum TYPE {
 
 export (TYPE) var type : int setget set_type
 export (int, 0, 7) var index : int setget set_index
+export var trigger := false setget set_trigger
+
+func set_trigger(val):
+	update_parent_material()
 
 
 func set_index(val):
