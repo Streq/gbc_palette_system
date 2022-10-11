@@ -15,8 +15,15 @@ func _physics_update(delta: float) -> void:
 			buffered_jab = true
 func _on_animation_finished():
 	if buffered_jab:
-		if root.input_state.dir.y<0:
-			goto("u_tilt")
+		var dir = root.input_state.dir
+		if dir.x:
+			root.facing_dir = sign(dir.x)
+		
+		if dir.y<0:
+			if sign(dir.x) == root.facing_dir:
+				goto("uppercut")
+			else:
+				goto("u_tilt")
 		else:
 			goto("jab")
 	else:

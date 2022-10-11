@@ -34,7 +34,7 @@ func exit():
 	anim.play("RESET")
 	anim.advance(0)
 	_exit()
-	emit_signal("exit")
+	emit_signal("exited")
 
 #OVERRIDABLE FUNCTIONS
 

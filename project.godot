@@ -111,6 +111,7 @@ config/icon="res://assets/texture/icon.png"
 
 Global="*res://src/global/Global.tscn"
 GlobalPalette="*res://src/global/GlobalPalette.tscn"
+Group="*res://src/global/group.gd"
 
 [display]
 
