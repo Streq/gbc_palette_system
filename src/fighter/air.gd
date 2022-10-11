@@ -9,7 +9,10 @@ func _physics_update(delta: float) -> void:
 		if dir.y>0:
 			goto("d_air")
 		elif dir.y<0:
-			goto("u_air")
+			if sign(dir.x) == root.facing_dir:
+				goto("uf_air")
+			else:
+				goto("u_air")
 		else:
 			goto("f_air")
 		return

@@ -19,7 +19,10 @@ func _on_animation_finished():
 	if buffered_jab:
 		var dir = root.input_state.dir
 		if dir.y<0:
-			goto("u_air")
+			if sign(dir.x) == root.facing_dir:
+				goto("uf_air")
+			else:
+				goto("u_air")
 		elif dir.y>0:
 			goto("d_air")
 		else:
