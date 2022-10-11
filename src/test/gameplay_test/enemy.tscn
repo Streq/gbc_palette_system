@@ -1,47 +1,114 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/shader/palette.gdshader" type="Shader" id=1]
 [ext_resource path="res://src/test/gameplay_test/enemy.gd" type="Script" id=2]
 [ext_resource path="res://src/test/gameplay_test/hurtbox.gd" type="Script" id=3]
 [ext_resource path="res://src/color/palette_client.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/texture/bullet.png" type="Texture" id=5]
+[ext_resource path="res://src/test/gameplay_test/push.gd" type="Script" id=6]
+[ext_resource path="res://src/fighter/hitbox/hitbox.gd" type="Script" id=7]
 
-[sub_resource type="Image" id=20]
+[sub_resource type="Image" id=28]
 data = {
-"data": PoolByteArray( 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 155, 0, 255 ),
+"data": PoolByteArray( 255, 255, 255, 0, 222, 255, 222, 255, 107, 107, 107, 255, 0, 0, 0, 255 ),
 "format": "RGBA8",
 "height": 1,
 "mipmaps": false,
 "width": 4
 }
 
-[sub_resource type="ImageTexture" id=17]
+[sub_resource type="ImageTexture" id=24]
 flags = 0
 flags = 0
-image = SubResource( 20 )
+image = SubResource( 28 )
 size = Vector2( 4, 1 )
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id=25]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/palette_size = 4
 shader_param/offset = 0
 shader_param/blue_index_offset = 0.0
-shader_param/palette = SubResource( 17 )
+shader_param/palette = SubResource( 24 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 5.5, 2.5 )
 
-[node name="enemy" type="Node2D"]
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/hurt_palette:trigger")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/palette_client:trigger")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "hurt"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/hurt_palette:trigger")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/palette_client:trigger")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, false ]
+}
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 5.5, 2.5 )
+
+[node name="enemy" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource( 2 )
+speed = 0
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 18 )
+material = SubResource( 25 )
 texture = ExtResource( 5 )
+
+[node name="hurt_palette" parent="Sprite" instance=ExtResource( 4 )]
+type = 1
+index = 4
 
 [node name="palette_client" parent="Sprite" instance=ExtResource( 4 )]
 type = 1
-index = 4
+index = 5
 
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -51,3 +118,32 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2( -1.5, 0.5 )
 shape = SubResource( 19 )
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource( 7 )
+knockback = Vector2( 100, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2( -1.5, 0.5 )
+shape = SubResource( 19 )
+
+[node name="animation" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
+anims/RESET = SubResource( 21 )
+anims/hurt = SubResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.5, 0.5 )
+shape = SubResource( 27 )
+
+[node name="push" type="Area2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push"]
+position = Vector2( -1.5, 0.5 )
+shape = SubResource( 19 )
+
+[connection signal="area_entered" from="hitbox" to="hitbox" method="_on_hitbox_area_entered"]

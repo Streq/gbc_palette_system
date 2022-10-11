@@ -5,7 +5,7 @@ export var walk_speed := 160.0
 export var run_speed := 160.0
 export var gravity := 150.0
 export var jump_speed := 125.0
-
+export var team := 0
 
 onready var input_state: Node = $input_state
 onready var state_animation: AnimationPlayer = $state_animation
