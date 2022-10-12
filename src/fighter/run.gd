@@ -1,5 +1,7 @@
 extends FighterState
 
+
+
 func _physics_update(delta: float) -> void:
 	if !root.is_on_floor():
 		goto("air")
@@ -23,7 +25,7 @@ func _physics_update(delta: float) -> void:
 		goto("idle")
 		return
 	
-	root.velocity.x = root.facing_dir*root.run_speed
+	root.velocity.x = lerp(root.velocity.x, root.facing_dir*root.run_speed, root.run_lerp*delta)
 	
 	if root.input_state.A.is_just_pressed():
 		root.velocity.y -= root.jump_speed

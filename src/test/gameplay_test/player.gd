@@ -1,11 +1,18 @@
 extends KinematicBody2D
 export var velocity := Vector2()
 
-export var walk_speed := 160.0
+export var walk_speed := 60.0
 export var run_speed := 160.0
 export var gravity := 150.0
 export var jump_speed := 125.0
 export var team := 0
+export (float, 0, 60) var idle_lerp := 0
+export (float, 0, 60) var stop_lerp := 0
+export (float, 0, 60) var run_lerp := 0
+export (float, 0, 60) var air_lerp := 0
+export (float, 0, 60) var air_run_lerp := 0
+
+
 
 onready var input_state: Node = $input_state
 onready var state_animation: AnimationPlayer = $state_animation

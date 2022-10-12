@@ -9,7 +9,8 @@ func _enter(params):
 	can_buffer = false
 
 func _physics_update(delta: float) -> void:
-	root.velocity.x *= (1.0-friction)
+#	root.velocity.x *= (1.0-friction)
+	root.velocity.x = lerp(root.velocity.x, 0.0, root.stop_lerp*delta)
 	if can_buffer:
 		if root.input_state.B.is_just_pressed():
 			buffered_jab = true
