@@ -15,13 +15,13 @@ func _physics_update(delta: float) -> void:
 	if root.input_state.B.is_just_pressed():
 		if dir.y<0:
 			if dir_x == root.facing_dir:
-#				goto("uf_tilt")
+				goto("throw")
 				pass
 			else:
-#				goto("u_tilt")
+				goto("throw")
 				pass
 		else:
-#			goto("jab")
+			goto("throw")
 			pass
 		return
 	if !dir_x:
