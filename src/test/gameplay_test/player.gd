@@ -1,5 +1,8 @@
 extends KinematicBody2D
+signal free_from_trap()
+
 export var velocity := Vector2()
+
 
 export var walk_speed := 60.0
 export var run_speed := 160.0
@@ -18,6 +21,7 @@ onready var input_state: Node = $input_state
 onready var state_animation: AnimationPlayer = $state_animation
 onready var pivot: Node2D = $pivot
 onready var state_machine: Node = $state_machine
+onready var carry_pivot: Node2D = $pivot/carry_pivot
 
 
 
@@ -28,7 +32,6 @@ func _ready() -> void:
 	state_machine.initialize()
 
 func _physics_process(delta: float) -> void:
-	
 	velocity.y += gravity*delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
@@ -75,3 +78,10 @@ func turn_around():
 func set_facing_dir(val):
 	facing_dir = val
 	pivot.scale.x = sign(facing_dir)*abs(pivot.scale.x)
+
+func _on_dropped_by_carrier():
+	_on_free_from_trap()
+
+func _on_free_from_trap():
+	emit_signal("free_from_trap")
+	
