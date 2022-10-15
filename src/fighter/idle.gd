@@ -18,6 +18,8 @@ func _physics_update(delta: float) -> void:
 				goto("uf_tilt")
 			else:
 				goto("u_tilt")
+		elif dir.y>0:
+			goto("grab")
 		else:
 			goto("jab")
 		return

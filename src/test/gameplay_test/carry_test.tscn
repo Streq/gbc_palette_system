@@ -65,8 +65,6 @@ script = ExtResource( 3 )
 [node name="Camera2D2" type="Camera2D" parent="player"]
 current = true
 process_mode = 0
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
 drag_margin_left = 0.05
 drag_margin_top = 0.05
 drag_margin_right = 0.05

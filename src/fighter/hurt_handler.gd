@@ -7,3 +7,8 @@ func _on_hitbox(hitbox) -> void:
 	palette_animation.play("hurt")
 	owner.state_machine.call_deferred("_change_state","hurt",[])
 	owner.set_deferred("velocity",hitbox.get_knockback())
+
+
+func _on_grabbox(grabbox) -> void:
+	owner.state_machine.call_deferred("_change_state","trapped",[])
+	grabbox._on_success(owner)

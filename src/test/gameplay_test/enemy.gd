@@ -3,7 +3,8 @@ extends KinematicBody2D
 export var speed := 200
 export var damp := 2.5
 export var facing_dir := 1.0 setget set_facing_dir
-onready var sprite: Sprite = $Sprite
+onready var pivot: Node2D = $pivot
+
 export var team := 1
 var velocity := Vector2()
 func _physics_process(delta: float) -> void:
@@ -21,7 +22,7 @@ func _physics_process(delta: float) -> void:
 func set_facing_dir(val):
 	if val:
 		facing_dir = sign(val)
-	sprite.scale.x = abs(sprite.scale.x)*facing_dir
+	pivot.scale.x = abs(pivot.scale.x)*facing_dir
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	queue_free()

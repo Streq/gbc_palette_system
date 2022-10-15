@@ -1,5 +1,8 @@
 extends KinematicBody2D
 signal free_from_trap()
+signal thrown()
+signal grabbed(by)
+signal collision(collision)
 
 export var velocity := Vector2()
 
@@ -31,9 +34,48 @@ var jabbing = false
 func _ready() -> void:
 	state_machine.initialize()
 
+var is_on_ceiling = false
+var is_on_floor = false
+var is_on_wall = false
+
+func is_on_ceiling()->bool:
+	return is_on_ceiling
+func is_on_floor()->bool:
+	return is_on_floor
+func is_on_wall()->bool:
+	return is_on_wall
+
+const MAX_COLLISIONS = 4
+	
+
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity*delta
-	velocity = move_and_slide(velocity, Vector2.UP)
+	
+#	velocity = move_and_slide(velocity, Vector2.UP)
+#	print(global_position)
+	is_on_floor = false
+	is_on_ceiling = false
+	is_on_wall = false
+
+	var col_count = 0
+	var motion = velocity*delta
+#	print(global_position)
+	while col_count < MAX_COLLISIONS and !motion.is_equal_approx(Vector2.ZERO):
+		var collision = move_and_collide(motion)
+		if !collision:
+			break
+		col_count+=1
+		emit_signal("collision", collision)
+		if collision.normal.y<0:
+			is_on_floor = true
+		elif collision.normal.y>0:
+			is_on_ceiling = true
+		if collision.normal.x:
+			is_on_wall = true
+		print(collision.remainder)
+		velocity = velocity.slide(collision.normal)
+		motion = collision.remainder
+
 	
 	state_machine.physics_update(delta)
 	
@@ -81,6 +123,16 @@ func set_facing_dir(val):
 
 func _on_dropped_by_carrier():
 	_on_free_from_trap()
+
+func _on_thrown_by_carrier(velocity:Vector2):
+	self.velocity = velocity
+	state_machine.call_deferred("_change_state","launch",[])
+	emit_signal("thrown")
+func _on_grabbed_by_carrier(carrier):
+	self.velocity = Vector2()
+	state_machine.call_deferred("_change_state","trapped",[])
+	emit_signal("grabbed", carrier)
+
 
 func _on_free_from_trap():
 	emit_signal("free_from_trap")

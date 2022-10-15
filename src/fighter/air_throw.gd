@@ -10,18 +10,16 @@ func _enter(params):
 	pass
 
 func _physics_update(delta: float) -> void:
-#	root.velocity.x *= (1.0-friction)
-	root.velocity.x = lerp(root.velocity.x, 0.0, root.stop_lerp*delta)
-#	if can_buffer:
-#		if root.input_state.B.is_just_pressed():
-#			buffered_jab = true
+	var dirx_unit = sign(root.input_state.dir.x)
+	var _lerp = root.air_run_lerp if dirx_unit else root.air_lerp
+	root.velocity.x = lerp(root.velocity.x, dirx_unit*root.run_speed, _lerp*delta)
+	
 func _on_animation_finished():
-	goto("idle")
+	goto("air")
 
 func throw():
 	var dir = root.input_state.dir
 	var vec = Vector2(300.0*root.facing_dir, -0.0)
 	if dir:
 		vec = vec.rotated(dir.angle())*root.facing_dir
-	vec.x = abs(vec.x)*root.facing_dir
 	root.carry_pivot.throw_carried_object(vec)
