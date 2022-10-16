@@ -1,9 +1,15 @@
 extends FighterState
 
 func _physics_update(delta: float) -> void:
+	var b :KinematicBody2D = root
 	if root.is_on_floor():
 		goto("idle")
 		return
+	if root.is_on_wall():
+		for i in b.get_slide_count():
+			if b.get_slide_collision(i).normal.x == -b.facing_dir:
+				goto("wall")
+				return
 	var dir = root.input_state.dir
 	var dirx_unit = sign(dir.x)
 	if root.input_state.B.is_just_pressed():

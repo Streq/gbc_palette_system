@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://src/test/gameplay_test/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/shader/palette.gdshader" type="Shader" id=2]
@@ -24,9 +24,10 @@
 [ext_resource path="res://src/fighter/grab.gd" type="Script" id=22]
 [ext_resource path="res://src/fighter/hitbox/grab_box.gd" type="Script" id=23]
 [ext_resource path="res://src/fighter/launch.gd" type="Script" id=24]
-[ext_resource path="res://assets/texture/fighter/bife.png" type="Texture" id=25]
+[ext_resource path="res://src/fighter/wall.gd" type="Script" id=25]
 [ext_resource path="res://src/fighter/air_throw.gd" type="Script" id=26]
 [ext_resource path="res://assets/texture/fighter/bife.png" type="Texture" id=27]
+[ext_resource path="res://assets/texture/fighter/bife.png" type="Texture" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 5.4 )
@@ -756,7 +757,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 25 ) ]
+"values": [ ExtResource( 28 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("pivot/Sprite:hframes")
@@ -3073,7 +3074,7 @@ shader_param/palette = SubResource( 79 )
 extents = Vector2( 9, 4 )
 
 [sub_resource type="RectangleShape2D" id=83]
-extents = Vector2( 8, 4.5 )
+extents = Vector2( 3, 3.5 )
 
 [sub_resource type="RectangleShape2D" id=65]
 extents = Vector2( 3.5, 7 )
@@ -3179,7 +3180,7 @@ material = SubResource( 80 )
 texture = ExtResource( 27 )
 hframes = 8
 vframes = 8
-frame = 43
+frame = 50
 __meta__ = {
 "_editor_description_": "YXNlcHJpdGVfd2l6YXJkX2NvbmZpZwpwbGF5ZXJ8PXN0YXRlX2FuaW1hdGlvbgpzb3VyY2V8PXJlczovL2Fzc2V0cy9hc2Vwcml0ZS9iaWZlLmFzZXByaXRlCmxheWVyfD0Kb3BfZXhwfD1GYWxzZQpvX2ZvbGRlcnw9cmVzOi8vYXNzZXRzL3RleHR1cmUvZmlnaHRlcgpvX25hbWV8PQpvbmx5X3Zpc2libGV8PVRydWUKb19leF9wfD0K"
 }
@@ -3217,7 +3218,7 @@ monitorable = false
 script = ExtResource( 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pivot/hitbox_manager/grab/grab"]
-position = Vector2( 8, -0.5 )
+position = Vector2( 11, 0.5 )
 shape = SubResource( 83 )
 
 [node name="d_air" parent="pivot/hitbox_manager" instance=ExtResource( 13 )]
@@ -3356,6 +3357,10 @@ start_state = "idle"
 [node name="idle" type="Node" parent="state_machine"]
 script = ExtResource( 7 )
 animation = "idle"
+
+[node name="wall" type="Node" parent="state_machine"]
+script = ExtResource( 25 )
+animation = "wall"
 
 [node name="trapped" type="Node" parent="state_machine"]
 script = ExtResource( 15 )

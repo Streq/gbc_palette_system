@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/test/bugs/wall_bug/input_recorder.gd" type="Script" id=1]
+
+[node name="input_recorder" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "to use this class you would first record gameplay
+HOW TO RECORD GAMEPLAY
+set autoplay off in the editor
+set the demo name (careful not to overwrite existing demos)
+assign the flapper you wanna record
+assign the flapper you wanna replay if there is one
+run the scene
+start recording by pressing 1
+when you are done press 2
+save the recording with 3
+exit the scene
+load the recording with 4"
+}

@@ -1,5 +1,5 @@
 extends Node
-
+class_name InputState
 var A := ButtonState.new()
 var B := ButtonState.new()
 var dir := Vector2()

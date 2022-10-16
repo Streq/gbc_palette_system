@@ -36,9 +36,18 @@ func exit():
 	_exit()
 	emit_signal("exited")
 
+
+func physics_update(delta: float):
+	_move(delta)
+	_physics_update(delta)
+	emit_signal("physics_updated", delta)
+
 #OVERRIDABLE FUNCTIONS
 
 # Initialize the state. E.g. change the animation
 
 func _on_animation_finished():
 	return
+
+func _move(delta):
+	root.velocity = root.move_and_slide(root.velocity, Vector2.UP)
