@@ -13,19 +13,19 @@ func _physics_update(delta: float) -> void:
 		root.turn_around()
 	
 	if root.input_state.B.is_just_pressed():
-		if dir.y<0:
+		if root.input_state.A.is_just_pressed():
+			goto("grab")
+		elif dir.y<0:
 			if dir_x == root.facing_dir:
 				goto("uf_tilt")
 			else:
 				goto("u_tilt")
-		elif dir.y>0:
-			goto("grab")
 		else:
 			goto("jab")
 		return
 
 	if root.input_state.A.is_just_pressed():
-		root.velocity.y -= root.jump_speed
+		goto("jump")
 		return
 	
 	if root.input_state.dir.x:
