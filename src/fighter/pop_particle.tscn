@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/texture/orb.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "play"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.210224, 6.06287 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 20, -20 ) ]
+}
+
+[node name="pivot" type="Node2D"]
+use_parent_material = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+autoplay = "play"
+anims/RESET = SubResource( 5 )
+anims/play = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 4 )

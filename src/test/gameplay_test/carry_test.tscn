@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/fighter/fighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/texture/bayer16.png" type="Texture" id=2]
 [ext_resource path="res://src/test/gameplay_test/Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://src/test/gameplay_test/tile_space_visualizer.gd" type="Script" id=4]
-[ext_resource path="res://assets/shader/palette.gdshader" type="Shader" id=5]
 [ext_resource path="res://src/test/gameplay_test/enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/test/gameplay_test/input_controller.gd" type="Script" id=8]
 [ext_resource path="res://src/test/gameplay_test/camera.gd" type="Script" id=9]
@@ -35,29 +34,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 0/z_index = 0
 
-[sub_resource type="Image" id=54]
-data = {
-"data": PoolByteArray( 255, 255, 255, 0, 255, 227, 99, 255, 255, 57, 8, 255, 0, 0, 0, 255 ),
-"format": "RGBA8",
-"height": 1,
-"mipmaps": false,
-"width": 4
-}
-
-[sub_resource type="ImageTexture" id=52]
-flags = 0
-flags = 0
-image = SubResource( 54 )
-size = Vector2( 4, 1 )
-
-[sub_resource type="ShaderMaterial" id=53]
-resource_local_to_scene = true
-shader = ExtResource( 5 )
-shader_param/palette_size = 4
-shader_param/offset = 0
-shader_param/blue_index_offset = 0.0
-shader_param/palette = SubResource( 52 )
-
 [sub_resource type="Curve2D" id=14]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 72, -35, 0, 0, 0, 0, 65, 268, 0, 0, 0, 0, 951, 273, 0, 0, 0, 0, 904, -20, 0, 0, 0, 0, 72, -37 )
@@ -76,18 +52,12 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 [node name="player" parent="." groups=["player"] instance=ExtResource( 1 )]
 position = Vector2( 203, 124 )
 
-[node name="Sprite" parent="player/pivot" index="0"]
-material = SubResource( 53 )
-
 [node name="carry_pivot" parent="player/pivot" index="2"]
 show_behind_parent = true
 
 [node name="dummy_opponent" parent="player/pivot/carry_pivot" index="0" instance=ExtResource( 1 )]
 position = Vector2( 0, 2 )
 team = 1
-
-[node name="Sprite" parent="player/pivot/carry_pivot/dummy_opponent/pivot" index="0"]
-material = SubResource( 53 )
 
 [node name="state_machine" parent="player/pivot/carry_pivot/dummy_opponent" index="5"]
 start_state = "trapped"

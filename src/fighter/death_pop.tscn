@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/shader/palette.gdshader" type="Shader" id=1]
+[ext_resource path="res://src/color/palette_client.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/fighter/pop_particle.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Image" id=28]
+data = {
+"data": PoolByteArray( 255, 255, 255, 0, 222, 255, 222, 255, 107, 107, 107, 255, 0, 0, 0, 255 ),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 4
+}
+
+[sub_resource type="ImageTexture" id=2]
+flags = 0
+flags = 0
+image = SubResource( 28 )
+size = Vector2( 4, 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/palette_size = 4
+shader_param/offset = 0
+shader_param/blue_index_offset = 0.0
+shader_param/palette = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=24]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/palette_size = 4
+shader_param/offset = 0
+shader_param/blue_index_offset = 0.0
+shader_param/palette = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=25]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/palette_size = 4
+shader_param/offset = 0
+shader_param/blue_index_offset = 0.0
+shader_param/palette = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=26]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/palette_size = 4
+shader_param/offset = 0
+shader_param/blue_index_offset = 0.0
+shader_param/palette = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=27]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/palette_size = 4
+shader_param/offset = 0
+shader_param/blue_index_offset = 0.0
+shader_param/palette = SubResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+material = SubResource( 3 )
+position = Vector2( 77, 54 )
+
+[node name="pivot" parent="." instance=ExtResource( 3 )]
+material = SubResource( 24 )
+
+[node name="pivot2" parent="." instance=ExtResource( 3 )]
+material = SubResource( 25 )
+rotation = -1.57079
+
+[node name="pivot3" parent="." instance=ExtResource( 3 )]
+material = SubResource( 26 )
+rotation = 3.14159
+
+[node name="pivot4" parent="." instance=ExtResource( 3 )]
+material = SubResource( 27 )
+rotation = 1.57079
+
+[node name="palette_client" parent="." instance=ExtResource( 2 )]
+type = 1
+index = 5

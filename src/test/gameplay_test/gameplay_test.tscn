@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/fighter/fighter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/texture/bayer16.png" type="Texture" id=2]
@@ -10,8 +10,9 @@
 [ext_resource path="res://src/test/gameplay_test/input_controller.gd" type="Script" id=8]
 [ext_resource path="res://src/test/gameplay_test/camera.gd" type="Script" id=9]
 [ext_resource path="res://src/color/palette_client.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/fighter/frutilla.tscn" type="PackedScene" id=11]
 
-[sub_resource type="Image" id=22]
+[sub_resource type="Image" id=27]
 data = {
 "data": PoolByteArray( 255, 255, 255, 0, 255, 227, 99, 255, 57, 189, 24, 255, 0, 0, 0, 255 ),
 "format": "RGBA8",
@@ -23,7 +24,7 @@ data = {
 [sub_resource type="ImageTexture" id=16]
 flags = 0
 flags = 0
-image = SubResource( 22 )
+image = SubResource( 27 )
 size = Vector2( 4, 1 )
 
 [sub_resource type="ShaderMaterial" id=17]
@@ -33,6 +34,29 @@ shader_param/palette_size = 4
 shader_param/offset = 0
 shader_param/blue_index_offset = 0.0
 shader_param/palette = SubResource( 16 )
+
+[sub_resource type="Image" id=28]
+data = {
+"data": PoolByteArray( 214, 198, 140, 255, 173, 140, 57, 255, 132, 107, 24, 255, 57, 57, 57, 255 ),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 4
+}
+
+[sub_resource type="ImageTexture" id=20]
+flags = 0
+flags = 0
+image = SubResource( 28 )
+size = Vector2( 4, 1 )
+
+[sub_resource type="ShaderMaterial" id=21]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/palette_size = 4
+shader_param/offset = 0
+shader_param/blue_index_offset = 0.0
+shader_param/palette = SubResource( 20 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -65,7 +89,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 72, -35, 0, 0, 0, 0, 65, 268, 0, 0, 0, 0, 951, 273, 0, 0, 0, 0, 904, -20, 0, 0, 0, 0, 72, -37 )
 }
 
-[sub_resource type="Image" id=23]
+[sub_resource type="Image" id=29]
 data = {
 "data": PoolByteArray( 246, 231, 213, 255, 156, 156, 156, 255, 107, 107, 107, 255, 57, 57, 57, 255 ),
 "format": "RGBA8",
@@ -74,19 +98,19 @@ data = {
 "width": 4
 }
 
-[sub_resource type="ImageTexture" id=20]
+[sub_resource type="ImageTexture" id=25]
 flags = 0
 flags = 0
-image = SubResource( 23 )
+image = SubResource( 29 )
 size = Vector2( 4, 1 )
 
-[sub_resource type="ShaderMaterial" id=21]
+[sub_resource type="ShaderMaterial" id=26]
 resource_local_to_scene = true
 shader = ExtResource( 5 )
 shader_param/palette_size = 4
 shader_param/offset = 0
 shader_param/blue_index_offset = 0.0
-shader_param/palette = SubResource( 20 )
+shader_param/palette = SubResource( 25 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -106,8 +130,22 @@ knockback = Vector2( 0, -120 )
 [node name="uf_tilt" parent="player2/pivot/hitbox_manager/uf_tilt" index="0"]
 knockback = Vector2( 40, -100 )
 
+[node name="frutilla" parent="." instance=ExtResource( 11 )]
+material = SubResource( 21 )
+position = Vector2( 173, 108 )
+team = 1
+
+[node name="palette_client" parent="frutilla" instance=ExtResource( 10 )]
+index = 5
+
 [node name="player3" parent="." groups=["player"] instance=ExtResource( 1 )]
 position = Vector2( 203, 115 )
+
+[node name="Sprite" parent="player3/pivot" index="0"]
+material = SubResource( 17 )
+
+[node name="palette_client" parent="player3/pivot/Sprite" index="1"]
+index = 2
 
 [node name="Camera2D" type="Camera2D" parent="player3"]
 position = Vector2( -203, -115 )
@@ -173,7 +211,7 @@ position = Vector2( 77, -16 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-material = SubResource( 21 )
+material = SubResource( 26 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
@@ -181,3 +219,4 @@ texture = ExtResource( 7 )
 [node name="palette_client" parent="CanvasLayer/TextureRect" instance=ExtResource( 10 )]
 
 [editable path="player2"]
+[editable path="player3"]
